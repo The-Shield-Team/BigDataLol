@@ -1,0 +1,209 @@
+///// GCP ////// 
+// data zone
+data source[icon: file]{
+    Batch Data [icon: gcp-batch]
+  }
+  // gcp cloud
+  GCP (North Virginia) [icon: gcp]{
+    // backend
+    backend GCP [icon: gcp-api]{
+      Api Gateway\nStates[icon: gcp-cloud-api-gateway]
+    }
+  
+    // pipeline
+    Big data pipeline [icon: arrow-right]{
+      // batch zone
+      Batch Process [icon: gcp-batch]{
+        data ingestion[icon: arrow-up]{
+          Upload CSV Stats[icon: gcp-cloud-functions]
+          Data Lake[icon: gcp-cloud-storage]
+        }
+        Data Processing[icon: gear]{
+          ETL Processing[icon: gcp-cloud-functions]
+        }
+      }
+      // Stream Zone
+      Stream Pipeline[icon: gcp-stream-suite]{
+          Lista json historial partidas[icon: gcp-firestore]
+        
+  
+        Fake Stream [icon: refresh-ccw]{
+          API WebSocket [icon: gcp-cloud-run]
+        }
+  
+        Real Stream [icon: timer]{
+          Stream [icon: gcp-pubsub]
+        }
+      }
+      Data warehouse [icon: gcp-bigquery]{
+        BQ Bronze [icon: gcp-bigquery]
+        BQ Silver [icon: gcp-bigquery]
+        BQ Gold [icon: gcp-bigquery]
+        QS B-S [icon: gcp-cloud-scheduler]
+        QS S-G [icon: gcp-cloud-scheduler]
+      }
+      insights[icon: graph]{
+        Grafana\nDasboard [icon: grafana]
+        
+      }
+    }
+  }
+  
+  //batch
+  Batch Data > Api Gateway\nStates 
+  Api Gateway\nStates > Upload CSV Stats > Data Lake > ETL Processing
+  
+  // Stream
+  Lista json historial partidas >  API WebSocket > Stream
+  
+  
+  // info zone
+  
+  ETL Processing > BQ Bronze
+  Stream > BQ Bronze
+  BQ Bronze > QS B-S
+  QS B-S > BQ Silver
+  BQ Silver > QS S-G
+  QS S-G > BQ Gold
+  
+  BQ Gold > Grafana\nDasboard
+  
+  ///// AWS ////// 
+  
+  // data zone
+  data source aws[icon: file]{
+    Batch Data AWS [icon: aws-batch]
+  }
+  
+  // AWS Cloud
+  AWS [icon: aws]{
+    // backend
+    backend aws [icon: api]{
+      Api Gateway\nStates AWS[icon: aws-api-gateway]
+    }
+  
+    // pipeline
+    Big data pipeline AWS[icon: arrow-right]{
+      // batch zone
+      Batch Process AWS[icon: aws-batch]{
+        data ingestion AWS[icon: arrow-up]{
+          Upload CSV Stats AWS[icon: lambda]
+          Data Lake AWS[icon: aws-s3]
+        }
+        Data Processing AWS[icon: gear]{
+          ETL Processing AWS[icon: aws-glue]
+        }
+      }
+      // Stream Zone
+      Stream Pipeline AWS[icon: stream-suite]{
+          Lista json historial partidas AWS[icon: aws-dynamodb]
+  
+  
+        Fake Stream 2 AWS[icon: refresh-ccw]{
+          API WebSocket AWS[icon: aws-api-gateway]
+        }
+  
+        Real Stream AWS[icon: timer]{
+          Stream AWS[icon: aws-kinesis]
+        }
+      }
+      Data warehouse AWS[icon: aws-redshift]{
+        Bronze AWS[icon: aws-redshift]
+        Silver AWS[icon: aws-redshift]
+        Gold AWS[icon: aws-redshift]
+        QS B-S AWS[icon: aws-glue]
+        QS S-G AWS[icon: aws-glue]
+      }
+      insights AWS[icon: graph]{
+        Grafana\nDashboard AWS[icon: grafana]
+      }
+    }
+  }
+  
+  //batch
+  Batch Data AWS > Api Gateway\nStates AWS 
+  Api Gateway\nStates AWS > Upload CSV Stats AWS > Data Lake AWS > ETL Processing AWS
+  
+  // Stream
+  
+  Lista json historial partidas AWS >  API WebSocket AWS > Stream AWS
+  
+  // info zone
+  ETL Processing AWS > Bronze AWS
+  Stream AWS > Bronze AWS
+  Bronze AWS > QS B-S AWS
+  QS B-S AWS > Silver AWS
+  Silver AWS > QS S-G AWS
+  QS S-G AWS > Gold AWS
+  
+  Gold AWS > Grafana\nDashboard AWS
+  
+  
+  ///// AZURE ////// 
+  
+  // data zone
+  data source Azure[icon: file]{
+    Batch Data Azure [icon: azure-batch-accounts]
+  }
+  // Azure Cloud
+  Azure [icon: azure]{
+    // backend
+    backend aZURE[icon: api]{
+      Api Gateway\nStates Azure[icon: azure-api-management-services]
+    }
+  
+    // pipeline
+    Big data pipeline Azure[icon: arrow-right]{
+      // batch zone
+      Batch Process Azure[icon: batch]{
+        data ingestion Azure[icon: arrow-up]{
+          Upload CSV Stats Azure [icon: azure-function-apps]
+          Data Lake Azure [icon: azure-data-lake-storage-gen1]
+        }
+        Data Processing Azure [icon: gear]{
+          ETL Processing Azure [icon: azure-function-apps]
+        }
+      }
+      // Stream Zone
+      Stream Pipeline Azure [icon: stream-suite]{
+          Lista json historial partidas Azure [icon: azure-cosmos-db]
+  
+        Fake Stream 2 Azure [icon: refresh-ccw]{
+          API WebSocket Azure [icon: azure-web-app]
+        }
+  
+        Real Stream Azure [icon: timer]{
+          Stream Azure [icon: azure-event-hubs]
+        }
+      }
+      Data warehouse Azure [icon: azure-synapse-analytics]{
+        Bronze Azure [icon: azure-synapse-analytics]
+        Silver Azure [icon: azure-synapse-analytics]
+        Gold Azure [icon: azure-synapse-analytics]
+        QS B-S Azure [icon: azure-logic-apps]
+        QS S-G Azure [icon: azure-logic-apps]
+      }
+      insights Azure [icon: graph]{
+        Grafana\nDashboard Azure [icon: grafana]
+      }
+    }
+  }
+  
+  //batch
+  Batch Data Azure > Api Gateway\nStates Azure 
+  Api Gateway\nStates Azure > Upload CSV Stats Azure > Data Lake Azure > ETL Processing Azure
+  
+  // Stream
+  Lista json historial partidas Azure >  API WebSocket Azure > Stream Azure
+  
+  // info zone
+  ETL Processing Azure > Bronze Azure
+  Stream Azure > Bronze Azure
+  Bronze Azure > QS B-S Azure
+  QS B-S Azure > Silver Azure
+  Silver Azure > QS S-G Azure
+  QS S-G Azure > Gold Azure
+  
+  Gold Azure > Grafana\nDashboard Azure
+  
+  

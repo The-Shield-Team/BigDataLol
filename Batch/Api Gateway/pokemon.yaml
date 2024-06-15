@@ -1,0 +1,41 @@
+swagger: "2.0"
+info:
+  title: Pokemon API
+  description: API Gateway for posting Pokemon data
+  version: 1.0.0
+host: us-central1-bigmama-421901.cloudfunctions.net
+schemes:
+  - https
+paths:
+  /post_pokemon:
+    post:
+      summary: Upload a CSV file
+      operationId: postPokemon
+      consumes:
+        - text/plain
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: file
+          description: The CSV file to upload
+          required: true
+          schema:
+            type: string
+      x-google-backend:
+        address: https://us-central1-bigmama-421901.cloudfunctions.net/post_pokemon
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string

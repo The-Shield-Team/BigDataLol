@@ -1,0 +1,209 @@
+// GCP Diagram
+title Diagrama de Arquitectura de BigData Pipeline en GCP
+
+data source [icon: file] {
+  Batch Data [icon: gcp-dataflow]
+  Stream Data [icon: gcp-pubsub]
+}
+
+GCP (North Virginia) [icon: gcp] {
+  backend GCP [icon: gcp-api-gateway] {
+    Api Gateway States [icon: gcp-api-gateway] // entry point
+  }
+
+  Big Data Pipeline [icon: arrow-right] {
+    Batch Process [icon: gcp-dataflow] {
+      data ingestion [icon: arrow-up] {
+        Upload Data [icon: gcp-cloud-functions]
+        Data Lake JSON [icon: gcp-cloud-storage]
+        Data Lake Images [icon: gcp-cloud-storage]
+      }
+      Data Processing [icon: gear] {
+        ETL Processing [icon: gcp-cloud-functions]
+      }
+    }
+
+    Stream Pipeline [icon: gcp-dataflow] {
+      Data Stream Ingestion [icon: gcp-dataflow] // entry point
+    }
+
+    Data Warehouse [icon: gcp-bigquery] {
+      BigQuery Bronze [icon: gcp-bigquery]
+      BigQuery Silver [icon: gcp-bigquery]
+      BigQuery Gold [icon: gcp-bigquery]
+      QS B-S [icon: gcp-cloud-scheduler]
+      QS S-G [icon: gcp-cloud-scheduler]
+    }
+    Insights [icon: graph] {
+      VPC [icon: gcp-vpc, color: green, line: point] {
+        Grafana Dashboard [icon: grafana]
+      }
+    }
+  }
+
+  Security [icon: shield] {
+    IAM [icon: gcp-identity-and-access-management]
+    Security Command Center [icon: gcp-security-command-center]
+    Cloud Armor [icon: gcp-cloud-armor]
+    Cloud Monitoring [icon: gcp-cloud-monitoring]
+    SIEM [icon: splunk, direction: down]
+  }
+}
+
+// Connections
+Batch Data > Api Gateway States
+Api Gateway States > Upload Data
+Upload Data > Data Lake JSON
+Upload Data > Data Lake Images
+Data Lake JSON > ETL Processing
+Data Lake Images > ETL Processing
+Stream Data > Data Stream Ingestion
+Data Stream Ingestion > BigQuery Bronze
+ETL Processing > BigQuery Bronze
+BigQuery Bronze > QS B-S
+QS B-S > BigQuery Silver
+BigQuery Silver > QS S-G
+QS S-G > BigQuery Gold
+BigQuery Gold > Grafana Dashboard
+
+
+// aws
+
+// AWS Diagram
+// title Diagrama de Arquitectura de BigData Pipeline en AWS
+
+data source_aws [icon: file] {
+  Batch Data_AWS [icon: aws-lambda]
+  Stream Data_AWS [icon: aws-kinesis]
+}
+
+AWS (North Virginia) [icon: aws] {
+  backend AWS_AWS [icon: aws-api-gateway] {
+    Api Gateway States_AWS [icon: aws-api-gateway] // entry point
+  }
+
+  Big Data Pipeline_AWS [icon: arrow-right] {
+    Batch Process_AWS [icon: aws-glue] {
+      data ingestion_AWS [icon: arrow-up] {
+        Upload Data_AWS [icon: aws-lambda]
+        Data Lake JSON_AWS [icon: aws-s3]
+        Data Lake Images_AWS [icon: aws-s3]
+      }
+      Data Processing_AWS [icon: gear] {
+        ETL Processing_AWS [icon: aws-lambda]
+      }
+    }
+
+    Stream Pipeline_AWS [icon: aws-kinesis] {
+      Data Stream Ingestion_AWS [icon: aws-kinesis] // entry point
+    }
+
+    Data Warehouse_AWS [icon: aws-redshift] {
+      Redshift Bronze_AWS [icon: aws-redshift]
+      Redshift Silver_AWS [icon: aws-redshift]
+      Redshift Gold_AWS [icon: aws-redshift]
+      QS B-S_AWS [icon: aws-eventbridge]
+      QS S-G_AWS [icon: aws-eventbridge]
+    }
+    Insights_AWS [icon: graph] {
+      VPC_AWS [icon: aws-vpc, color: green, line: point] {
+        Grafana Dashboard_AWS [icon: grafana]
+      }
+    }
+  }
+
+  Security_AWS [icon: shield] {
+    IAM_AWS [icon: aws-iam]
+    Security Hub_AWS [icon: aws-security-hub]
+    WAF_AWS [icon: aws-waf]
+    CloudWatch_AWS [icon: aws-cloudwatch]
+    SIEM_AWS [icon: splunk, direction: down]
+  }
+}
+
+// Connections
+Batch Data_AWS > Api Gateway States_AWS
+Api Gateway States_AWS > Upload Data_AWS
+Upload Data_AWS > Data Lake JSON_AWS
+Upload Data_AWS > Data Lake Images_AWS
+Data Lake JSON_AWS > ETL Processing_AWS
+Data Lake Images_AWS > ETL Processing_AWS
+Stream Data_AWS > Data Stream Ingestion_AWS
+Data Stream Ingestion_AWS > Redshift Bronze_AWS
+ETL Processing_AWS > Redshift Bronze_AWS
+Redshift Bronze_AWS > QS B-S_AWS
+QS B-S_AWS > Redshift Silver_AWS
+Redshift Silver_AWS > QS S-G_AWS
+QS S-G_AWS > Redshift Gold_AWS
+Redshift Gold_AWS > Grafana Dashboard_AWS
+
+
+// azure
+
+// Azure Diagram
+// title Diagrama de Arquitectura de BigData Pipeline en Azure
+
+data source_azure [icon: file] {
+  Batch Data_Azure [icon: azure-data-factory]
+  Stream Data_Azure [icon: azure-event-hubs]
+}
+
+Azure (North Virginia) [icon: azure] {
+  backend Azure_Azure [icon: azure-api-management] {
+    Api Gateway States_Azure [icon: azure-api-management] // entry point
+  }
+
+  Big Data Pipeline_Azure [icon: arrow-right] {
+    Batch Process_Azure [icon: azure-data-factory] {
+      data ingestion_Azure [icon: arrow-up] {
+        Upload Data_Azure [icon: azure-functions]
+        Data Lake JSON_Azure [icon: azure-data-lake-storage]
+        Data Lake Images_Azure [icon: azure-data-lake-storage]
+      }
+      Data Processing_Azure [icon: gear] {
+        ETL Processing_Azure [icon: azure-functions]
+      }
+    }
+
+    Stream Pipeline_Azure [icon: azure-stream-analytics] {
+      Data Stream Ingestion_Azure [icon: azure-event-hubs] // entry point
+    }
+
+    Data Warehouse_Azure [icon: azure-synapse-analytics] {
+      Synapse Bronze_Azure [icon: azure-synapse-analytics]
+      Synapse Silver_Azure [icon: azure-synapse-analytics]
+      Synapse Gold_Azure [icon: azure-synapse-analytics]
+      QS B-S_Azure [icon: azure-logic-apps]
+      QS S-G_Azure [icon: azure-logic-apps]
+    }
+    Insights_Azure [icon: graph] {
+      VPC_Azure [icon: azure-vnet, color: green, line: point] {
+        Grafana Dashboard_Azure [icon: grafana]
+      }
+    }
+  }
+
+  Security_Azure [icon: shield] {
+    IAM_Azure [icon: azure-active-directory]
+    Security Center_Azure [icon: azure-security-center]
+    Front Door_Azure [icon: azure-front-door]
+    Monitor_Azure [icon: azure-monitor]
+    SIEM_Azure [icon: splunk, direction: down]
+  }
+}
+
+// Connections
+Batch Data_Azure > Api Gateway States_Azure
+Api Gateway States_Azure > Upload Data_Azure
+Upload Data_Azure > Data Lake JSON_Azure
+Upload Data_Azure > Data Lake Images_Azure
+Data Lake JSON_Azure > ETL Processing_Azure
+Data Lake Images_Azure > ETL Processing_Azure
+Stream Data_Azure > Data Stream Ingestion_Azure
+Data Stream Ingestion_Azure > Synapse Bronze_Azure
+ETL Processing_Azure > Synapse Bronze_Azure
+Synapse Bronze_Azure > QS B-S_Azure
+QS B-S_Azure > Synapse Silver_Azure
+Synapse Silver_Azure > QS S-G_Azure
+QS S-G_Azure > Synapse Gold_Azure
+Synapse Gold_Azure > Grafana Dashboard_Azure
