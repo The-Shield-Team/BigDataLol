@@ -1,0 +1,47 @@
+swagger: "2.0"
+info:
+  title: Email API
+  description: API Gateway for sending emails
+  version: 1.0.0
+host: us-east4-big-data-lol.cloudfunctions.net
+schemes:
+  - https
+paths:
+  /send_email:
+    post:
+      summary: Send an email
+      operationId: sendEmail
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              to:
+                type: string
+              subject:
+                type: string
+              body:
+                type: string
+      x-google-backend:
+        address: https://us-east4-big-data-lol.cloudfunctions.net/send_mail
+      responses:
+        200:
+          description: Success
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        500:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string

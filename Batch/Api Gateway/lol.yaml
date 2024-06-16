@@ -7,10 +7,10 @@ host: us-east4-big-data-lol.cloudfunctions.net
 schemes:
   - https
 paths:
-  /post_champions:
+  /post_json:
     post:
       summary: Upload JSON data
-      operationId: postChampions
+      operationId: postJson
       consumes:
         - application/json
       produces:
@@ -23,7 +23,7 @@ paths:
           schema:
             type: object
       x-google-backend:
-        address: https://us-east4-big-data-lol.cloudfunctions.net/post_bucket_lol_champs
+        address: https://us-east4-big-data-lol.cloudfunctions.net/post_bucket_json
       responses:
         200:
           description: Success
@@ -40,42 +40,11 @@ paths:
               error:
                 type: string
 
-  /post_json:
-    post:
-      summary: Upload JSON data
-      operationId: postJson
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          description: The JSON data to upload
-          required: true
-          schema:
-            type: object
-      x-google-backend:
-        address: https://us-central1-bigmama-421901.cloudfunctions.net/post_json_handler
-      responses:
-        200:
-          description: Success
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-        400:
-          description: Error
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
+                
   /post_images:
     post:
       summary: Upload images
-      operationId: postImages
+      operationId: postImagesChamps
       consumes:
         - multipart/form-data
       produces:
@@ -90,7 +59,7 @@ paths:
             type: string
             format: binary
       x-google-backend:
-        address: https://us-central1-bigmama-421901.cloudfunctions.net/post_images_handler
+        address: https://us-east4-big-data-lol.cloudfunctions.net/post_bucket_images
       responses:
         200:
           description: Success
@@ -106,3 +75,5 @@ paths:
             properties:
               error:
                 type: string
+
+
