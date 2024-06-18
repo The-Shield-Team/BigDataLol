@@ -20,7 +20,7 @@ def encode_images_in_folder(folder_path):
     return images
 
 folder_path = 'C:/bigData/img/item'
-version = '1.0.0'
+version = '14.12'
 type = 'item'
 images_data = encode_images_in_folder(folder_path)
 
@@ -30,7 +30,11 @@ data = {
     "type": type
 
 }
-
+print(data)
 response = requests.post('https://gatewayapi-bigdata-lol-2lrqhq48.uk.gateway.dev/post_images', json=data)
 print(response.status_code)
 print(response.json())
+
+
+
+## traer todas las imagenes de un bucket
