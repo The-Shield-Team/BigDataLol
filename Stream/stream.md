@@ -7,3 +7,6 @@
 - functions: es el conjunto de funciones cargadas en gcp cloud functions
 
 - schemas son los json necesarios para crear las tablas en bigquery
+
+En el siguiente repositorio se encuentra todo el codigo de la evaluación:
+https://github.com/The-Shield-Team/BigDataLol/edit/main/Stream/stream.md
